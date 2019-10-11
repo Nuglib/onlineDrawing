@@ -100,6 +100,7 @@ div{
 } 
 /*最新文字*/
 .last_font{
+    float: right;
     border-radius: 10px;
     width: 30%;
     height: 60%;
@@ -111,9 +112,11 @@ div{
     line-height: 60px;
     padding: 10px;
     font-size: 20px;
+    margin-left:5px;
 }
 /*最热文字*/
 .hot_font{
+    float: right;
     border-radius: 10px;
     width: 30%;
     height: 60%;
@@ -125,6 +128,7 @@ div{
     line-height: 60px;
     padding: 10px;
     font-size: 20px;
+    margin-left:5px;
 }
 /*风格元素*/
 .style_font{

@@ -296,7 +296,7 @@
                            <li data-target="#myCarousel" data-slide-to="2"></li>
                         </ol>  --> 
                         <!-- 轮播（Carousel）项目 -->
-                        <div class="carousel-inner" style="height: 200px">
+                        <div class="carousel-inner" style="height: 200px" id="hotword">
                            <div class="item active">
                               <div class="carousel-caption">
                                  <!-- <img style="display: inline-block;" width="300" height="300" src="http://static.runoob.com/images/mix/img_fjords_wide.jpg" >
@@ -597,7 +597,7 @@
             $(function(){
              /**轮播图ajax请求*/
                $.ajax({
-                  url: "http://127.0.0.1:8080/imageController/getimagebanner",
+                  url: "http://192.168.0.104:8080/imageController/getimagebanner",
                   data: '',
                   type: "GET",
                   dataType: "json",
@@ -621,7 +621,7 @@
                });
                /**最新图轮播ajax请求*/
                $.ajax({
-                  url: "http://127.0.0.1:8080/imageController/getnewestimage",
+                  url: "http://192.168.0.104:8080/imageController/getnewestimage",
                   data:'',
                   type: "GET",
                   dataType: "json",
@@ -652,7 +652,7 @@
 
                /**获取最热轮播图ajax请求*/
                $.ajax({
-                  url: "http://127.0.0.1:8080/imageController/getnewhotimages",
+                  url: "http://192.168.0.104:8080/imageController/getnewhotimages",
                   data:'',
                   type: "GET",
                   dataType: 'json',
@@ -685,7 +685,7 @@
 
                /*获取最新文字ajax请求*/
                $.ajax({
-                  url: "http://localhost:8080/writtController/getnewword",
+                  url: "http://192.168.0.104:8080/writtController/getnewword",
                   data: '',
                   type: "GET",
                   dataType: 'json',
@@ -694,11 +694,11 @@
                         $("#newword").html("");
                         for (let i = 0; i < data.object.length; i++) {
                            if(i==0){
-                              var new_word="<div class='item active'> <div class='carousel-caption'> <div class='last_font'>"+data.object[i].content+"</div> <div class='last_font'>"+data.object[i+1].content+"</div> <div class='last_font'>"+data.object[i+2].content+"</div></div></div>"
+                              var new_word="<div class='item active'> <div class='carousel-caption'> <div class='last_font' style='margin-right:4.5%'>"+data.object[i].content+"</div> <div class='last_font'>"+data.object[i+1].content+"</div> <div class='last_font'>"+data.object[i+2].content+"</div></div></div>"
                            }else if(i==3){
-                              var new_word="<div class='item'> <div class='carousel-caption'> <div class='last_font'>"+data.object[i].content+"</div> <div class='last_font'>"+data.object[i+1].content+"</div> <div class='last_font'>"+data.object[i+2].content+"</div></div></div>"
+                              var new_word="<div class='item'> <div class='carousel-caption'> <div class='last_font' style='margin-right:4.5%'>"+data.object[i].content+"</div> <div class='last_font'>"+data.object[i+1].content+"</div> <div class='last_font'>"+data.object[i+2].content+"</div></div></div>"
                            }else if(i==6){
-                              var new_word="<div class='item'> <div class='carousel-caption'> <div class='last_font'>"+data.object[i].content+"</div> <div class='last_font'>"+data.object[i+1].content+"</div> <div class='last_font'>"+data.object[i+2].content+"</div></div></div>"
+                              var new_word="<div class='item'> <div class='carousel-caption'> <div class='last_font' style='margin-right:4.5%'>"+data.object[i].content+"</div> <div class='last_font'>"+data.object[i+1].content+"</div> <div class='last_font'>"+data.object[i+2].content+"</div></div></div>"
                            }
                            if(i==0){
                               $("#newword").append(new_word);
@@ -713,6 +713,37 @@
                      }
                   }
                });
+
+               /*获取最热文字ajax请求*/
+               $.ajax({
+                  url: "http://192.168.0.104:8080/writtController/gethotword",
+                  data: '',
+                  type: "GET",
+                  dataType: 'json',
+                  success: function(data){
+                     if(data.aBoolean){
+                        $("#hotword").html("");
+                        for (let i = 0; i < data.object.length; i++) {
+                           if(i==0){
+                              var hot_word="<div class='item active'> <div class='carousel-caption'> <div class='hot_font' style='margin-right:4.5%'>"+data.object[i].content+"</div> <div class='hot_font'>"+data.object[i+1].content+"</div> <div class='hot_font'>"+data.object[i+2].content+"</div></div></div>"
+                           }else if(i==3){
+                              var hot_word="<div class='item'> <div class='carousel-caption'> <div class='hot_font' style='margin-right:4.5%'>"+data.object[i].content+"</div> <div class='hot_font'>"+data.object[i+1].content+"</div> <div class='hot_font'>"+data.object[i+2].content+"</div></div></div>"
+                           }else if(i==6){
+                              var hot_word="<div class='item active'> <div class='carousel-caption'> <div class='hot_font' style='margin-right:4.5%'>"+data.object[i].content+"</div> <div class='hot_font'>"+data.object[i+1].content+"</div> <div class='hot_font'>"+data.object[i+2].content+"</div></div></div>"
+                           }
+
+                           if(i==0){
+                              $("#hotword").append(hot_word);
+                           }else if(i==3){
+                              $("#hotword").append(hot_word);
+                           }else if(i==6){
+                              $("#hotword").append(hot_word);
+                           }
+                        }
+                     }
+                        console.log(data);
+                  }
+               })
             })
          </script>
 </body>
